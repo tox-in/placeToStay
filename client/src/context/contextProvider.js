@@ -1,18 +1,21 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, useReducer } from 'react'
+import reducer from './reducer'
 
 const initialState = {
-    currentUser:null
+    currentUser:null,
+    openLogin:false
 }
-const context = createContext(initialState)
+const Context = createContext(initialState)
 
 export const useValue = ()=>{
-    return useContext(context)
+    return useContext(Context)
 }
 
-const contextProvider = ({children}) => {
+const ContextProvider = ({children}) => {
+    const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Context.Provider value={}>{children}</Context.Provider>
+    <Context.Provider value={{state,dispatch}}>{children}</Context.Provider>
   )
 }
 
-export default contextProvider
+export default ContextProvider
