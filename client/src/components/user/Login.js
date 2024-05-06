@@ -19,12 +19,22 @@ const Login = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        const password = passwordRef?.current?.value;
+        const confirmPassword = confirmPasswordRef?.current?.value;
+        if (password !== confirmPassword) {
+            dispatch({
+                type: 'UPDATE_ALERT',
+                payload: { open: true, severity: 'error', message: 'Passwords don\'t match' },
+            });
+            return;
+        }
+        // Perform other form submission tasks
     };
 
     useEffect(()=>{
         isRegister ? setTitle('Register') : setTitle('Login');
-    })
+    }, [isRegister])
 
   return (
     <Dialog
@@ -72,13 +82,13 @@ const Login = () => {
                 label='Email'
                 type='text'
                 fullWidth
-                inputRef={nameRef}
+                inputRef={emailRef}
                 required
                 />
                 <PasswordField {...{passwordRef}} />
                 {
                     isRegister && 
-                    <PasswordField passwordRef={confirmPasswordRef} id='confirmPassword' label='Confirm Password' />
+                    <PasswordField inputRef={confirmPasswordRef} id='confirmPassword' label='Confirm Password' />
                 }
             </DialogContent>
             <DialogActions>

@@ -2,7 +2,7 @@ import { IconButton, Box, Badge, Tooltip, Avatar } from '@mui/material'
 import { Mail, Notifications } from '@mui/icons-material'
 import React, { useState } from 'react'
 import { useValue } from '../../context/contextProvider'
-import UserMenu from '../UserMenu'
+import UserMenu from './UserMenu'
 
 const UserIcons = () => {
 
