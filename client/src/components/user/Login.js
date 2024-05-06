@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useValue } from '../../context/contextProvider'
 import { Close, Send } from '@mui/icons-material'
 import PasswordField from './PasswordField'
+import GoogleOneTapLogin from './GoogleOneTapLogin'
 
 const Login = () => {
     const {state:{openLogin}, dispatch} = useValue()
@@ -91,6 +92,9 @@ const Login = () => {
            <Button onClick={()=>setIsRegister(!isRegister)}>
             {isRegister ? 'Sign in now' : 'Sign up now'}
            </Button>
+        </DialogActions>
+        <DialogActions sx={{ justifyContent: 'center', py:'24px'}}>
+            <GoogleOneTapLogin />
         </DialogActions>
     </Dialog>
   )
