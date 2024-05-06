@@ -1,7 +1,8 @@
-import { Dialog, DialogContent, DialogContentText, DialogTitle, IconButton, TextField } from '@mui/material'
-import React, { useRef, useState } from 'react'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, TextField } from '@mui/material'
+import React, { useEffect, useRef, useState } from 'react'
 import { useValue } from '../../context/contextProvider'
-import { Close } from '@mui/icons-material'
+import { Close, Send } from '@mui/icons-material'
+import PasswordField from './PasswordField'
 
 const Login = () => {
     const {state:{openLogin}, dispatch} = useValue()
@@ -18,7 +19,11 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-    }
+    };
+
+    useEffect(()=>{
+        isRegister ? setTitle('Register') : setTitle('Login');
+    })
 
   return (
     <Dialog
@@ -69,8 +74,24 @@ const Login = () => {
                 inputRef={nameRef}
                 required
                 />
+                <PasswordField {...{passwordRef}} />
+                {
+                    isRegister && 
+                    <PasswordField passwordRef={confirmPasswordRef} id='confirmPassword' label='Confirm Password' />
+                }
             </DialogContent>
+            <DialogActions>
+                <Button type='submit' variant='contained' endIcon={<Send />}>
+                    Submit
+                </Button>
+            </DialogActions>
         </form>
+        <DialogActions sx={{justifyContent:'left', p:'5px 24px'}}>
+           {isRegister?'Do you have an account? ' : 'Don\'t have an account? '} 
+           <Button onClick={()=>setIsRegister(!isRegister)}>
+            {isRegister ? 'Sign in now' : 'Sign up now'}
+           </Button>
+        </DialogActions>
     </Dialog>
   )
 }
