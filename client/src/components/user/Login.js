@@ -32,11 +32,20 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        //testing Loading
+        dispatch({type:'START_LOADING'});
+
+        setTimeout(() => {
+            dispatch({ type: 'END_LOADING' });
+        }, 6000)
+
+        //checking the userInput
         console.log('Name value:', name);
         console.log('Email value:', email);
         console.log('Password value:', password);
         console.log('Confirm password value:', confirmPassword);
 
+        //testing Notification
         if (password !== confirmPassword) {
             dispatch({
                 type: 'UPDATE_ALERT',
@@ -122,7 +131,7 @@ const Login = () => {
                         />
                     )}
                 </DialogContent>
-                <DialogActions>
+                <DialogActions sx={{ px: '19px' }}>
                     <Button type="submit" variant="contained" endIcon={<Send />}>
                         Submit
                     </Button>

@@ -6,9 +6,9 @@ const Notification = () => {
     const {state:{alert}, dispatch} = useValue();
 
     const handleClose = (event, reason) => {
-        if(reason === 'clickaway') return
+        if(reason === 'clickaway') return;
         dispatch({type:'UPDATE_ALERT', payload:{...alert,open:false}})
-    }
+    };
 
   return (
     <Snackbar
