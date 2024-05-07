@@ -9,6 +9,9 @@ const reducer = (state, action)=>{
         case 'UPDATE_USER':
             return {...state, currentUser:action.payload}
 
+        case 'UPDATE_ALERT':
+                return {...state, currentUser:action.payload}
+
         default:
             throw new Error('No matched action!')
     }
