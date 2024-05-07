@@ -1,11 +1,9 @@
 import React from 'react'
 import { AppBar, Box, Container, IconButton, Toolbar, Typography, Button } from '@mui/material';
 import { Menu, Lock } from '@mui/icons-material';
-import photoUrl from '../profile.png';
 import { useValue } from '../context/contextProvider';
 import UserIcons from './user/Usericons';
 
-const user = { name: 'tony', photoUrl }
 
 const NavBar = () => {
 
