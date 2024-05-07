@@ -33,7 +33,7 @@ const Login = () => {
         e.preventDefault();
 
         //testing Loading
-        dispatch({type:'START_LOADING'});
+        dispatch({ type: 'START_LOADING' });
 
         setTimeout(() => {
             dispatch({ type: 'END_LOADING' });
