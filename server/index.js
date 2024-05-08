@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv'
 import roomRouter from './routes/roomRouter.js';
 import cors from 'cors';
+import mongoose from 'mongoose';
 
 dotenv.config()
 
@@ -25,7 +26,9 @@ app.use((req,res)=>res.status(404).json({success:false, message:'Not Found'}))
 
 const startServer = async() => {
     try {
-        app.listen(port, ()=>console.log('Server is running on port'))
+        await mongoose.connect(process.env.MONGODB_CONNECT);
+        console.log('MongoDB connected successfully');
+        app.listen(port, ()=>console.log('Server is running on http://localhost:5000'))
     } catch (error) {
         console.log(error);
     }
