@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useValue } from "../context/contextProvider";
 import {jwtDecode} from "jwt-decode";
 
@@ -10,10 +10,10 @@ const useCheckToken = () => {
   useEffect(() => {
     if (currentUser) {
       const decodedToken = jwtDecode(currentUser.token);
-      if (decodedToken.exp = 1000 < new Date().getTime())
+      if (decodedToken.exp * 1000 < new Date().getTime())
         dispatch({ type: "UPDATE_USER", payload: null });
     }
-  }, []);
+  });
 };
 
 export default useCheckToken;
