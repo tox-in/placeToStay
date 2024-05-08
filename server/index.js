@@ -9,17 +9,11 @@ const app = express();
 
 const port = process.env.PORT || 5000
 
-app.use((req,res) =>{
-    res.setHeader('Access-Control-Allow-Origin', process.env.CLIENT_URL)
-    res.SetHeader('Access-Control-Allowed-Methods', 'GET, POST, PUT, PATCH, DELETE')
-    res.SetHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization')
-    next()
-})
-
 app.use(cors({
     origin: process.env.CLIENT_URL,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization']
+    allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization'],
+    credentials: true,
 }));
 
 
