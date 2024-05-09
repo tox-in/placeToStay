@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import roomRouter from './routes/roomRouter.js';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import userRouter from './routes/userRouter.js';
 
 dotenv.config()
 
@@ -20,6 +21,7 @@ app.use(cors({
 
 app.use(express.json({limit:'10mb'}))
 
+app.use('/user', userRouter);
 app.use('/room', roomRouter);
 app.use('/', (req,res)=>res.json({message:'Welcome to our API'}))
 app.use((req,res)=>res.status(404).json({success:false, message:'Not Found'}))
